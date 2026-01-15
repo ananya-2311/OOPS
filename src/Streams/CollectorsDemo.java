@@ -95,6 +95,19 @@ public class CollectorsDemo {
         System.out.println("groupingBy + mapping: " + namesByDept);
         //groupingBy + mapping: {Finance=[Priya], HR=[Rohit, Aman], IT=[Ananya, Neha]}
 
+        /* 6️⃣ groupingBy + mapping() */
+        Map<String, List<String>> namesByDept2 =
+                employees.stream()
+                        .collect(Collectors.groupingBy(
+                                e -> e.getDept(),
+                                Collectors.mapping(
+                                        e -> e.getName(),
+                                        Collectors.toList()
+                                )
+                        ));
+        System.out.println("groupingBy + mapping: " + namesByDept);
+        //groupingBy + mapping: {Finance=[Priya], HR=[Rohit, Aman], IT=[Ananya, Neha]}
+
         /* 7️⃣ partitioningBy() */
         Map<Boolean, List<Employee>> highSalaryPartition =
                 employees.stream()
